@@ -28,3 +28,9 @@ jobs:
       - name: 🚀 Build app
         run: eas build --profile development -p android --non-interactive
         
+        - name: Fetch data from json file
+        id: buildUrls
+        run: |
+          echo "::set-output name=ANDROID_URL::$(jq '.[0].artifacts.buildUrl' build.json -r)"
+
+        
