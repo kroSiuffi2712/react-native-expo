@@ -33,9 +33,19 @@ jobs:
         id: buildUrls
         run: |
           echo "ANDROID_URL=$(jq '.[0].artifacts.applicationArchiveUrl' build.json -r)" >> $GITHUB_OUTPUT
-      
+          
       - name: Show default variables
         run: |
           echo ${{ steps.buildUrls.outputs.ANDROID_URL }}
+      
+      - name: create a temporary artifact downloads folder
+        run: mkdir downloads
 
-        
+      - name: add artifacts to publish to the temp folder
+        run: |
+          cd downloads
+          echo 'apk' > ${{ steps.buildUrls.outputs.ANDROID_URL }}
+          cd ..
+          
+     
+      
