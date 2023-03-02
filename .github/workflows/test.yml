@@ -27,7 +27,7 @@ jobs:
 
       - name: 🚀 Build app
         run: 
-          eas build:list --profile development -p android --non-interactive --json > build.json
+          eas build:list --json --limit=1 --platform=android | jq '.[0].artifacts.buildUrl'
       
       - name: Fetch data from json file
         id: buildUrls
