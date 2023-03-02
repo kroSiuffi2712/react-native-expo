@@ -15,7 +15,7 @@ jobs:
       - name: add artifacts to publish to the temp folder
         run: |
           cd downloads
-          curl -sL "https://expo.dev/artifacts/eas/iPvYvHaHqfxfzPnqNGTJED.apk" > "tiendaticket2".apk
+          curl -sL "https://expo.dev/artifacts/eas/eepvn5XnaAAWKz6o3yuauU.apk" > "tiendaticket".apk
           cd ..
       
       - name: list of files
