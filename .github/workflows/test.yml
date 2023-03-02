@@ -14,3 +14,6 @@ jobs:
           cd downloads
           curl -sL "https://expo.dev/artifacts/eas/eepvn5XnaAAWKz6o3yuauU.apk" >"tiendaticket".apk
           cd ..
+      
+      - name: downloads folder
+        run: ls -l
