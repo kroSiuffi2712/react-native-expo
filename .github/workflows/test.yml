@@ -25,4 +25,4 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-              az storage blob upload --account-name applicationapkstorage --account-key GpKA4ycifBIcHnEzBf4UGAirJbwRxhe3/11w2TeyCiVeMVUYgioR15zphM64/3yTuU/gsKQpMz9G+AStL4fvQA== --container-name apk --file /downloads/tiendaticket.apk --name tiendaticket
+              az storage blob upload --account-name applicationapkstorage --account-key GpKA4ycifBIcHnEzBf4UGAirJbwRxhe3/11w2TeyCiVeMVUYgioR15zphM64/3yTuU/gsKQpMz9G+AStL4fvQA== --container-name apk --file downloads/tiendaticket.apk --name tiendaticket
