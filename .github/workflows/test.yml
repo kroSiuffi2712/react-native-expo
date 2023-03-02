@@ -9,6 +9,9 @@ jobs:
       - name: create a temporary artifact downloads folder
         run: mkdir downloads
       
+      - name: list of files
+        run: ls -l downloads
+      
       - name: add artifacts to publish to the temp folder
         run: |
           cd downloads
