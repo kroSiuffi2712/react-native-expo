@@ -27,12 +27,12 @@ jobs:
 
       - name: 🚀 Build app
         run: 
-          eas build:list --json --limit=1 --platform=android | jq '.[0].artifacts.buildUrl'
+          eas build --profile development -p android --non-interactive --json > build.json
       
       - name: Fetch data from json file
         id: buildUrls
         run: |
-          echo "::set-output name=ANDROID_URL::$(jq '.[0].artifacts.buildUrl' build.json -r)"
+          echo "::set-output name=ANDROID_URL::$(jq '.[0].artifacts' build.json -r)"
       
       - name: Show default variables
         run: |
