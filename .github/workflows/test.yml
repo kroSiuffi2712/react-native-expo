@@ -25,8 +25,8 @@ jobs:
       - name: 📦 Install dependencies
         run: yarn install
 
-      - name: 🚀 Build app
-        run: 
+      - name: 🚀 Build app om EAS
+        run: |
           eas build --profile development -p android --non-interactive 
           eas build:view --json > build.json
       
