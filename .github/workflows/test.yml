@@ -26,9 +26,8 @@ jobs:
         run: yarn install
 
       - name: 🚀 Build app
-        run: |
-          eas build --profile development -p android --non-interactive 
-          eas build:list --limit=1 --platform=android --json > build.json
+        run: 
+          eas build:list --limit=1 --platform=android --json > build.json | jq '.[0].artifacts.buildUrl'
       
       - name: Fetch data from json file
         id: buildUrls
