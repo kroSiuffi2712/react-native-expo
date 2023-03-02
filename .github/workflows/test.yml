@@ -32,5 +32,9 @@ jobs:
         id: buildUrls
         run: |
           echo "::set-output name=ANDROID_URL::$(jq '.[0].artifacts.buildUrl' build.json -r)"
+      
+      - name: Show default variables
+        run: |
+          echo ${{ steps.buildUrls.outputs.ANDROID_URL }}
 
         
