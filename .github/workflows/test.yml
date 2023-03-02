@@ -32,7 +32,7 @@ jobs:
       - name: Fetch data from json file
         id: buildUrls
         run: |
-          echo "::set-output name=ANDROID_URL::$(jq '.[0].artifacts' build.json -r)"
+          echo "ANDROID_URL=$(jq '.[0].artifacts.applicationArchiveUrl' build.json -r)" >> $GITHUB_OUTPUT
       
       - name: Show default variables
         run: |
