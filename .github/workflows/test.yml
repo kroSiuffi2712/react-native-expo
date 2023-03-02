@@ -26,12 +26,14 @@ jobs:
         run: yarn install
 
       - name: 🚀 Build app
-        run: eas build --profile development -p android --non-interactive --json > build.json
+        run: 
+          eas build --profile development -p android --non-interactive 
+          eas build:view --json > build.json
       
       - name: Fetch data from json file
         id: buildUrls
         run: |
-          echo "::set-output name=ANDROID_URL::$(jq '.[0].artifacts.buildUrl' build.json -r)"
+          echo "::set-output name=ANDROID_URL::$(jq .id build.json -r)"
       
       - name: Show default variables
         run: |
