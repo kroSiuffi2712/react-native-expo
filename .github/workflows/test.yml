@@ -6,55 +6,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: 🏗 Setup repo
-        uses: actions/checkout@v3
-
-      - name: 🏗 Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-          cache: yarn
-
-      - name: 🏗 Setup EAS
-        uses: expo/expo-github-action@v8
-        with:
-          expo-version: latest
-          eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
-
-      - name: 📦 Install dependencies
-        run: yarn install
-
-      - name: 🚀 Build app
-        run: 
-          eas build --profile development -p android --non-interactive --json > build.json
+      - name: create a temporary artifact downloads folder
+        run: mkdir downloads
       
-      - name: Fetch data from json file
-        id: buildUrls
-        run: |
-          echo "ANDROID_URL=$(jq '.[0].artifacts.applicationArchiveUrl' build.json -r)" >> $GITHUB_OUTPUT
-          
-      - name: install react-native-version
-        run: yarn global add react-native-version
+      - name: list of files
+        run: ls -l downloads
       
-      - name: Major update version.
-        if:   contains(github.event.head_commit.message , 'MAJOR')
-        run: |
-          echo "Major update version"
-          npm version major -m "Actualizacion de version %s"
+      - name: get url
+        echo "URL=https://expo.dev/artifacts/eas/eepvn5XnaAAWKz6o3yuauU.apk"
+        echo "apk=$URL" >> $GITHUB_ENV
       
-      - name: Show default variables
+      - name: add artifacts to the temp folder
         run: |
-          echo ${{ steps.buildUrls.outputs.ANDROID_URL }}
-
-      - name: add artifacts to publish to the temp folder
-        if:   contains(github.event.head_commit.message , 'MAJOR')
-        run: |
-          mkdir downloads
           cd downloads
-          curl -sL "https://expo.dev/artifacts/eas/eepvn5XnaAAWKz6o3yuauU.apk" > storelive-qa-123.apk
+          curl -sL ${{ env.URL }} > storelive-qa-456.apk
           cd ..
-
+      
       - name: list of files
         run: ls -l downloads
       
@@ -63,4 +30,4 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-              az storage blob upload --account-name applicationapkstorage --account-key GpKA4ycifBIcHnEzBf4UGAirJbwRxhe3/11w2TeyCiVeMVUYgioR15zphM64/3yTuU/gsKQpMz9G+AStL4fvQA== --container-name apk --file downloads/storelive-qa-123.apk --name storelive-qa-123.apk
+              az storage blob upload --account-name applicationapkstorage --account-key GpKA4ycifBIcHnEzBf4UGAirJbwRxhe3/11w2TeyCiVeMVUYgioR15zphM64/3yTuU/gsKQpMz9G+AStL4fvQA== --container-name apk --file downloads/storelive-qa-456.apk --name storelive-qa-456.apk
