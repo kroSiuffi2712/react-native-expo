@@ -13,6 +13,7 @@ jobs:
         run: ls -l downloads
       
       - name: get url
+        run: |
         echo "URL" > "https://expo.dev/artifacts/eas/eepvn5XnaAAWKz6o3yuauU.apk"
         echo "APK=$URL" >> $GITHUB_ENV
       
