@@ -6,7 +6,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: get version
+      - name: get and update version
         run: |
         new_version=$(npm version patch -m "update version %s")
         echo "new version: $new_version"
