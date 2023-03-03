@@ -14,7 +14,8 @@ jobs:
       
       - name: get url
         run: |
-        echo "URL" > "https://expo.dev/artifacts/eas/eepvn5XnaAAWKz6o3yuauU.apk" >> $GITHUB_ENV
+        echo "APK="https://expo.dev/artifacts/eas/eepvn5XnaAAWKz6o3yuauU.apk"
+        echo "URL=$APK" >> $GITHUB_ENV
       
       - name: add artifacts to the temp folder
         run: |
