@@ -6,17 +6,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: get current version number
+        run: |
+        current_version=$(npm version major -m "update version %s") 
+        echo "new_version=$current_version" >> $GITHUB_ENV
+      
       - name: create a temporary artifact downloads folder
         run: mkdir downloads
       
       - name: list of files
         run: ls -l downloads
       
-      - name: add artifacts to publish to the temp folder
+      - name: add artifacts to the temp folder
+        if:   contains(github.event.head_commit.message , 'MAJOR')
         run: |
           cd downloads
-          curl -sL "https://expo.dev/artifacts/eas/eepvn5XnaAAWKz6o3yuauU.apk" > "tiendaticket".apk
+          curl -sL "https://expo.dev/artifacts/eas/eepvn5XnaAAWKz6o3yuauU.apk" > storelive-qa-${{ env.new_version }}.apk
           cd ..
       
       - name: list of files
         run: ls -l downloads
+      
+      - name: Upload to blob storage
+        if:   contains(github.event.head_commit.message , 'MAJOR')
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+              az storage blob upload --account-name applicationapkstorage --account-key GpKA4ycifBIcHnEzBf4UGAirJbwRxhe3/11w2TeyCiVeMVUYgioR15zphM64/3yTuU/gsKQpMz9G+AStL4fvQA== --container-name apk --file downloads/tiendaticket.apk --name storelive-qa-${{ env.new_version }}.apk
