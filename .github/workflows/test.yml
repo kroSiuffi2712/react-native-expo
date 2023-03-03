@@ -13,13 +13,13 @@ jobs:
         run: ls -l downloads
       
       - name: get url
-        echo "URL=https://expo.dev/artifacts/eas/eepvn5XnaAAWKz6o3yuauU.apk"
-        echo "apk=$URL" >> $GITHUB_ENV
+        echo "URL" > "https://expo.dev/artifacts/eas/eepvn5XnaAAWKz6o3yuauU.apk"
+        echo "APK=$URL" >> $GITHUB_ENV
       
       - name: add artifacts to the temp folder
         run: |
           cd downloads
-          curl -sL ${{ env.URL }} > storelive-qa-456.apk
+          curl -sL ${{ env.APK }} > storelive-qa-456.apk
           cd ..
       
       - name: list of files
