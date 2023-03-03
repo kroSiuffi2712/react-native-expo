@@ -6,10 +6,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: get and update version
-        run: |
-        echo "new_version=$(npm version major -m "update version %s")" >> $GITHUB_ENV 
-      
       - name: create a temporary artifact downloads folder
         run: mkdir downloads
       
@@ -25,6 +21,10 @@ jobs:
       
       - name: list of files
         run: ls -l downloads
+
+      - name: get and update version
+        run: |
+        echo "new_version=$(npm version major -m "update version %s")" >> $GITHUB_ENV 
       
       - name: Upload to blob storage
         if:   contains(github.event.head_commit.message , 'MAJOR')
