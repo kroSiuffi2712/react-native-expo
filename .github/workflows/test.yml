@@ -35,7 +35,7 @@ jobs:
         uses: chkfung/android-version-actions@v1.2.1
         with:
           gradlePath: app/build.gradle # or app/build.gradle.kts 
-          versionCode: 1.1.2
+          versionCode: ${{github.run_number}}
           versionName: 1.0.2
 
       
