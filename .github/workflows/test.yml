@@ -27,4 +27,4 @@ jobs:
         
       - name: version
         run: |
-          sed -i 's/^version\s/"version":/ 1.3.3' app.json
+          sed -i 's/version/version/' app.json
