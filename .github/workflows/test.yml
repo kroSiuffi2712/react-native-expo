@@ -27,5 +27,4 @@ jobs:
         
       - name: version
         run: |
-          VERSION=$(awk -F\" '/"version":/ {print $4}' app.json)
-          echo "branch: version: $VERSION"
+          sed -i 's/^version\s/"version":/ 1.3.3' app.json
