@@ -14,3 +14,18 @@ jobs:
         with:
           node-version: 18.x
           cache: yarn
+
+      - name: 🏗 Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 📦 Install dependencies
+        run: yarn install
+
+      - name: 🚀 Build app om EAS
+        run: |
+          eas build --profile development -p android --non-interactive --json > build.json
+          
