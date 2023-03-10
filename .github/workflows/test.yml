@@ -25,6 +25,11 @@ jobs:
       - name: 📦 Install dependencies
         run: yarn install
         
-      - name: version
+      - name: overwrite version
         run: |
-          sed -i 's/version/version/' app.json
+          sed -i "s/\(version:\)\(.*\)/\'version':'1.2.3'/" app.json
+
+      - name: overwrite version
+        run: |
+          VERSION=$(awk -F\" '/"version":/ {print $4}' app.json)
+          echo "branch: version: $VERSION"
