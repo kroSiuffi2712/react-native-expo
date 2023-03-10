@@ -27,5 +27,5 @@ jobs:
 
       - name: 🚀 Build app om EAS
         run: |
-          eas build --profile development -p android --appBuildVersion=1.1.0 --non-interactive --json > build.json
+          eas build --profile development -p android --non-interactive --json > build.json
           

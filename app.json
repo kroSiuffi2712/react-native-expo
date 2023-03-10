@@ -2,7 +2,7 @@
   "expo": {
     "name": "my-app",
     "slug": "my-app",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -32,6 +32,9 @@
       "eas": {
         "projectId": "7af11b4d-9424-432f-b45f-075202b3be55"
       }
-    }
+    },
+    "plugins": [
+      "expo-build-properties"
+    ]
   }
 }
