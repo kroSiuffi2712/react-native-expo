@@ -24,7 +24,7 @@ jobs:
         
       - name: change version
         run: |
-        ./gradlew incrementVersion -PoverrideVersion=2.5.11
+          ./gradlew incrementVersion -PoverrideVersion=2.5.11
 
 
       - name: 🏗 Setup EAS
