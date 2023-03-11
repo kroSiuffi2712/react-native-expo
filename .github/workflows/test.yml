@@ -28,7 +28,7 @@ jobs:
       - name: get current version
         run: |
           CURRENT_VERSION=$(awk -F\" '/"version":/ {print $4}' app.json)
-          echo "current_version: $CURRENT_VERSION"
+          echo "current_version: 1.1.0"
           echo "new_version: 1.2.3"
         
       - name: overwrite version
