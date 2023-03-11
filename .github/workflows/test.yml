@@ -40,5 +40,10 @@ jobs:
           VERSION_APP=$(awk -F\" '/"version":/ {print $4}' app.json)
           echo "branch: version: $VERSION_APP"
 
+      - name: 🚀 Build app
+        run: 
+          eas build --profile development -p android --non-interactive --json > build.json
+
+
 
 
