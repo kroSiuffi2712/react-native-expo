@@ -28,7 +28,7 @@ jobs:
       - name: get current version
         run: |
           CURRENT_VERSION=$(awk -F\" '/"version":/ {print $4}' app.json)
-          echo "current_version=\"1.0.0\"" >> $GITHUB_ENV
+          echo "current_version=\"1.1.0\"" >> $GITHUB_ENV
           echo "new_version=\"1.2.3\"" >> $GITHUB_ENV
         
       - name: print versions
@@ -38,7 +38,7 @@ jobs:
 
       - name: overwrite version
         run: |
-           awk '{if($2=="1.0.0") {$2="1.2.3"} print $0}' app.json
+           sed -i 's/^$current_version/$new_version/g' app.json
 
       - name: print new version 
         run: |
