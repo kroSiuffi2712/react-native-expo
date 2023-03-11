@@ -37,7 +37,7 @@ jobs:
 
       - name: print new version 
         run: |
-          VERSION_APP=$(awk -F\" '/"versions":/ {print $4}' app.json)
+          VERSION_APP=$(awk -F\" '/"version":/ {print $4}' app.json)
           echo "branch: version: $VERSION_APP"
 
 
