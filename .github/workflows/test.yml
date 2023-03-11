@@ -33,16 +33,12 @@ jobs:
         
       - name: overwrite version
         run: |
-          sed -i 's/"1.1.0"/"1.2.3"/g' app.json
+          sed -i 's/\"$current_version\"/\"$new_version\"/g' app.json
 
       - name: print new version 
         run: |
           VERSION_APP=$(awk -F\" '/"version":/ {print $4}' app.json)
           echo "branch: version: $VERSION_APP"
-
-      - name: 🚀 Build app
-        run: 
-          eas build --profile development -p android --non-interactive --json > build.json
 
 
 
