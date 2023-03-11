@@ -33,11 +33,11 @@ jobs:
         
       - name: overwrite version
         run: |
-          sed -i 's/\"$current_version\"/\"$new_version\"/g' app.json
+          sed -i 's/"version"/"versions"/g' app.json
 
       - name: print new version 
         run: |
-          VERSION_APP=$(awk -F\" '/"version":/ {print $4}' app.json)
+          VERSION_APP=$(awk -F\" '/"versions":/ {print $4}' app.json)
           echo "branch: version: $VERSION_APP"
 
 
