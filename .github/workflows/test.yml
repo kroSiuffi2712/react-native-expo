@@ -33,7 +33,7 @@ jobs:
         
       - name: overwrite version
         run: |
-          sed -i 's/${"1.1.0"}/${"1.2.3"}/g' app.json
+          sed -i -e 's/$current_version/$new_version/g' app.json
 
       - name: print new version 
         run: |
