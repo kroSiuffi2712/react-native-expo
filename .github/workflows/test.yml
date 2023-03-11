@@ -29,11 +29,11 @@ jobs:
         run: |
           CURRENT_VERSION=$(awk -F\" '/"version":/ {print $4}' app.json)
           echo "current_version: $CURRENT_VERSION"
-          echo "new_version:"1.2.3""
+          echo "new_version: 1.2.3"
         
       - name: overwrite version
         run: |
-          sed -i 's/version/versions/g' app.json
+          sed -i 's/\"$current_version\"/\"$new_version\"/g' app.json
 
       - name: print new version 
         run: |
