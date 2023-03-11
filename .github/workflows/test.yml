@@ -38,7 +38,7 @@ jobs:
 
       - name: overwrite version
         run: |
-           sed -i 's/${current_version}/${new_version}/g' app.json
+           awk '{if($2=="1.0.0") {$2="1.2.3"} print $0}' app.json
 
       - name: print new version 
         run: |
