@@ -24,11 +24,6 @@ jobs:
 
       - name: 📦 Install dependencies
         run: yarn install
-
-      - name: get current version
-        run: |
-          echo "current_version=1.1.0" >> $GITHUB_ENV
-          echo "new_version=2.2.3" >> $GITHUB_ENV
         
       - name: print versions
         run: |
@@ -37,7 +32,9 @@ jobs:
 
       - name: overwrite version
         run: |
-           sed -i -e 's/\"${current_version}\"/\"${new_version}\"/g' app.json
+          echo "current_version=1.1.0" >> $GITHUB_ENV
+          echo "new_version=2.2.3" >> $GITHUB_ENV
+          sed -i -e 's/\"${current_version}\"/\"${new_version}\"/g' app.json
 
       - name: print new version 
         run: |
