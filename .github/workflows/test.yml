@@ -34,11 +34,7 @@ jobs:
         run: |
           echo "current version $current_version"
           echo "new version $new_version"
-          echo "version_replace=s/\"$current_version\"/\"$new_version\"/g" >> $GITHUB_ENV
-
-      - name: overwrite version
-        run: |
-           sed -i '$version_replace' app.json
+          echo "'version_replace=s/\"$current_version\"/\"$new_version\"/g'" >> $GITHUB_ENV
 
       - name: print new version 
         run: |
